@@ -1,0 +1,169 @@
+/* ==========================================================================
+   ABS VIP Consulting — feuille globale
+   Trois couleurs seulement : noir #111314, jaune #f5ecc2, blanc.
+   ========================================================================== */
+
+:root {
+  /* — Palette — */
+  --noir: #111314;
+  --jaune: #f5ecc2;
+  --blanc: #ffffff;
+  --gris: rgba(255, 255, 255, 0.66);
+  --ligne: rgba(245, 236, 194, 0.28);
+  --ligne-douce: rgba(255, 255, 255, 0.1);
+
+  /* Alias historiques utilisés par les composants */
+  --or: var(--jaune);
+  --or-clair: var(--jaune);
+  --creme: var(--blanc);
+
+
+  /* — Typographie — */
+  --display: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+  --body: 'Jost', 'Futura', 'Century Gothic', sans-serif;
+
+  /* — Mouvement — */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+  --loader-total: 1.6s;
+
+  /* — Gabarits — */
+  --gutter: clamp(22px, 5vw, 88px);
+  --header-h: 84px;
+  --max: 1440px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--noir);
+  color: var(--blanc);
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Page figée pendant le préchargeur (uniquement si JS actif) */
+
+body {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  background: var(--noir);
+}
+
+/* Lenis (défilement fluide) */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+.section > *, .section [class] { min-width: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul, ol { list-style: none; }
+::selection { background: var(--jaune); color: var(--noir); }
+:focus-visible { outline: 1px solid var(--jaune); outline-offset: 4px; }
+
+/* — Typographie commune — */
+.kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.h2 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+}
+.h2 em,
+.italic { font-style: italic; color: var(--jaune); }
+
+.lede { color: var(--gris); max-width: 52ch; }
+
+/* Section pleine largeur : le fond déborde, le contenu reste dans --max */
+.section {
+  position: relative;
+  padding: clamp(80px, 12vw, 180px) max(var(--gutter), calc((100% - var(--max)) / 2));
+  background: var(--noir);
+  color: var(--blanc);
+}
+
+/* Page entièrement noire : un seul thème */
+
+.rule { height: 1px; background: var(--ligne-douce); }
+
+/* — Boutons — */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.95em 1.9em;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--jaune);
+  color: var(--jaune);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.btn:hover,
+.btn:focus-visible { background: var(--jaune); color: var(--noir); }
+.btn--solid { background: var(--jaune); color: var(--noir); }
+.btn--solid:hover,
+.btn--solid:focus-visible { background: var(--blanc); border-color: var(--blanc); }
+
+/* ==========================================================================
+   Chargement : apparition en cascade (délai = --i)
+   ========================================================================== */
+.stagger {
+  opacity: 0;
+  animation: rise 1s var(--out) forwards;
+  animation-delay: calc(var(--loader-total) + var(--i, 0) * 120ms);
+}
+@keyframes rise {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mask-line { display: block; }
+.mask-line > span {
+  display: block;
+  opacity: 0;
+  animation: rise 1s var(--out) forwards;
+  animation-delay: calc(var(--loader-total) + var(--i, 0) * 140ms);
+}
+
+/* ==========================================================================
+   Scroll : aucune animation sur le texte
+   ========================================================================== */
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
