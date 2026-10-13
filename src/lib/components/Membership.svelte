@@ -113,6 +113,7 @@
     font-weight: 400;
     font-size: clamp(1.9rem, 3.4vw, 3.2rem);
     line-height: 1.1;
+    color: var(--jaune);
   }
   h3 em { color: var(--or-clair); }
 
@@ -129,7 +130,6 @@
   .perks li {
     position: relative;
     padding: 0.8rem 0;
-    border-bottom: 1px solid var(--ligne-douce);
   }
   .foot { display: grid; gap: 1rem; justify-items: start; }
   small { color: var(--gris); font-size: 0.82rem; }
@@ -139,4 +139,6 @@
     .card-stage { order: 2; }
     .offer { order: 1; }
   }
+  /* Titres de l'adhésion : tout en doré */
+  .title :global(.h2) { color: var(--jaune); }
 </style>
