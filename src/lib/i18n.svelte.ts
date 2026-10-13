@@ -62,7 +62,7 @@ const ui = {
     memCta: 'Demander une adhésion',
     memNote: 'Les conditions de l’adhésion sont précisées lors de votre premier échange.',
     foundKicker: 'Le fondateur',
-    foundRole: 'Co-fondateur, ABS VIP Consulting',
+    foundRole: 'Abdoulaye, co-fondateur d’ABS VIP Consulting',
     foundP1:
       'ABS VIP Consulting est née d’une amitié d’enfance et d’une conviction partagée : offrir à chaque client un interlocuteur qui s’engage personnellement, de la première demande au dernier détail.',
     foundP2:
@@ -158,7 +158,7 @@ const ui = {
     memCta: 'Request a membership',
     memNote: 'The terms of membership are set out during your first conversation.',
     foundKicker: 'The founder',
-    foundRole: 'Co-founder, ABS VIP Consulting',
+    foundRole: 'Abdoulaye, co-founder of ABS VIP Consulting',
     foundP1:
       'ABS VIP Consulting was born of a childhood friendship and a shared conviction: to give every client a contact who commits personally, from the first request to the last detail.',
     foundP2:
